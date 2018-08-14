@@ -177,7 +177,8 @@
 					                
 					                
 									var geometry = new THREE.SphereGeometry( 0.02, 3, 2 );
-									var material = new THREE.MeshBasicMaterial( {color: rgb(greyColor, greyColor, greyColor)} );
+									var color = new THREE.Color( greyColor, greyColor, greyColor );
+									var material = new THREE.MeshBasicMaterial( {color: color} );
 									var sphere = new THREE.Mesh( geometry, material );
 									sphere.position.x = 0.0 + x*0.02;
 									sphere.position.y = 0.2 + y*0.02;
