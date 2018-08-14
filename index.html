@@ -143,12 +143,14 @@
 					        
 					        y=0;
 					        
-					        for (var item_y in item_z)
-					        {
-					            x=0;
+					        //for (var item_y in item_z)
+					        item_z.forEach(function(item_y, index, array) {
+
+  								x=0;
 					            
-					            for (var item_x in item_y)
-					            {
+					            //for (var item_x in item_y)
+					            item_y.forEach(function(item_x, index, array) {
+					            
 					                // create and add a 3d sphere
 
 					                var xValue = parseFloat(item_x);
@@ -187,9 +189,9 @@
 									scene.add( sphere );
 
 					                x++;
-					            }
+					            });
 					            y++;
-					        }
+							});
 					        z++;
 					    }
 					    //END ALGORITHM
