@@ -124,12 +124,80 @@
 
 
 				getJSON('https://rudyaramayo.github.io/ARMatrix/material1.json',
-					function(err, data) {
+					function(err, materialArray) {
 					  if (err !== null) {
 					    alert('Something went wrong: ' + err);
 					  } else {
-					  	debugger;
-					    alert('Your query count: ' + data);
+					    alert('Your query count: ' + materialArray);
+
+					    //BEGIN ALGORITHM
+					    int x = 0;
+					    int y = 0;
+					    int z = 0;
+					    //for (NSArray *item_z in self.materialArray)
+					    for (int j=0; j < 50; j++)
+					    {
+					        var item_z = materialArray[j];
+					        
+					        y=0;
+					        
+					        for (var item_y in item_z)
+					        {
+					            x=0;
+					            
+					            for (var item_x in item_y)
+					            {
+					                // create and add a 3d sphere
+
+					                var xValue = parseFloat(item_x);
+					                //NSLog(@"color = %f", xValue);
+
+					                var greyColor = 1.0;
+					                var alpha = 0.5;
+
+					                if (xValue > 1.0)
+					                {
+					                	//Broken Value
+					                	alpha = 0.0;
+					                	xValue = 1.0;
+					                }
+					                else if ( xValue < 0.0)
+					                {
+					                	//Broken Value
+					                	alpha = 0.0;
+					                	xValue = 0.0;   
+					                }
+					                else
+					                {
+					                	alpha = 0.5-xValue/2.0;
+					                	greyColor = xValue;
+					                }
+					                
+					                
+									var geometry = new THREE.SphereGeometry( 0.02, 3, 2 );
+									var material = new THREE.MeshBasicMaterial( {color: rgb(greyColor, greyColor, greyColor)} );
+									var sphere = new THREE.Mesh( geometry, material );
+									sphere.position.x = 0.0 + x*0.02;
+									sphere.position.y = 0.2 + y*0.02;
+									sphere.position.z = -0.25 + z*0.02;
+									sphere.alpha = alpha;
+									scene.add( sphere );
+
+					                x++;
+					            }
+					            y++;
+					        }
+					        z++;
+					    }
+					    //END ALGORITHM
+					     
+
+
+						//scene.add( floor );
+
+
+
+
 					  }
 					}
 				);
