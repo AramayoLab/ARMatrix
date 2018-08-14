@@ -128,7 +128,7 @@
 					  if (err !== null) {
 					    alert('Something went wrong: ' + err);
 					  } else {
-					    //alert('Your query count: ' + materialArray);
+					    alert('Your query count: ' + materialArray);
 
 					    debugger;
 
@@ -137,20 +137,22 @@
 					    var y = 0;
 					    var z = 0;
 					    //for (NSArray *item_z in self.materialArray)
-					    for (var j=0; j < 50; j++)
+					    for (var z=0; z < 50; z++)
 					    {
-					        var item_z = materialArray[j]; //Get Each Z Page
+					        var item_z = materialArray[z];
 					        
 					        y=0;
 					        
-					        //for (var item_y in item_z)
-					        item_z.forEach(function(item_y, index, array) { //Get Each Y Page
+					        for (var y = 0; y < 50; y++)
+					        {
+					        	var item_y = item_z[y];
 
-  								x=0;
+					            x=0;
 					            
-					            //for (var item_x in item_y)
-					            item_y.forEach(function(item_x, index, array) { // Get Each X Line
-					            
+					            for (var x = 0; x < 50; x++)
+					            {
+					            	var item_x = item_y[x];
+
 					                // create and add a 3d sphere
 
 					                var xValue = parseFloat(item_x);
@@ -188,11 +190,8 @@
 									sphere.alpha = alpha;
 									scene.add( sphere );
 
-					                x++;
-					            });
-					            y++;
-							});
-					        z++;
+					            }
+					        }
 					    }
 					    //END ALGORITHM
 					     
