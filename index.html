@@ -133,7 +133,7 @@
 
 			function generatePointcloud( materialArray ) {
 				var geometry = generatePointCloudGeometry( materialArray );
-				var material = new THREE.PointsMaterial( { size: 0.5, vertexColors: THREE.VertexColors } );
+				var material = new THREE.PointsMaterial( { size: 1.0, vertexColors: THREE.VertexColors } );
 				var pointcloud = new THREE.Points( geometry, material );
 				return pointcloud;
 			}
@@ -197,7 +197,7 @@
 
 					    //BEGIN ALGORITHM
 					    var pcBuffer = generatePointcloud( materialArray );
-						pcBuffer.scale.set( 1,1,1 );
+						pcBuffer.scale.set( .1,.1,.1 );
 						pcBuffer.position.set( 0,0,2 );
 						scene.add( pcBuffer );
 
