@@ -70,31 +70,8 @@
 				var numPoints = materialArray.length * materialArray[0].length * materialArray[0][0].length;
 				var positions = new Float32Array( numPoints*3 );
 				var colors = new Float32Array( numPoints*3 );
-				
-
 
 				var k = 0;
-
-				/*
-				for( var i = 0; i < width; i++ ) {
-					for( var j = 0; j < length; j++ ) {
-						var u = i / width;
-						var v = j / length;
-						var x = u - 0.5;
-						var y = ( Math.cos( u * Math.PI * 8 ) + Math.sin( v * Math.PI * 8 ) ) / 20;
-						var z = v - 0.5;
-						positions[ 3 * k ] = x;
-						positions[ 3 * k + 1 ] = y;
-						positions[ 3 * k + 2 ] = z;
-						var intensity = ( y + 0.1 ) * 5;
-						colors[ 3 * k ] = color.r * intensity;
-						colors[ 3 * k + 1 ] = color.g * intensity;
-						colors[ 3 * k + 2 ] = color.b * intensity;
-						k++;
-					}
-				}
-				*/
-
 
 				for (var z=0; z < 50; z++)
 			    {
@@ -144,18 +121,6 @@
 							colors[ 3 * k + 1 ] = greyColor;
 							colors[ 3 * k + 2 ] = greyColor;
 							k++;
-
-			                /*
-							var geometry = new THREE.SphereGeometry( 0.02, 3, 2 );
-							var color = new THREE.Color( greyColor, greyColor, greyColor );
-							var material = new THREE.MeshBasicMaterial( {color: color, opacity: alpha} );
-							var sphere = new THREE.Mesh( geometry, material );
-							sphere.position.x = 0.0 + x*0.02;
-							sphere.position.y = 0.2 + y*0.02;
-							sphere.position.z = -0.25 + z*0.02;
-							//sphere.alpha = alpha;
-							scene.add( sphere );
-							*/
 			            }
 			        }
 			    }
@@ -168,7 +133,7 @@
 
 			function generatePointcloud( materialArray ) {
 				var geometry = generatePointCloudGeometry( materialArray );
-				var material = new THREE.PointsMaterial( { size: 0.02, vertexColors: THREE.VertexColors } );
+				var material = new THREE.PointsMaterial( { size: 0.5, vertexColors: THREE.VertexColors } );
 				var pointcloud = new THREE.Points( geometry, material );
 				return pointcloud;
 			}
@@ -209,14 +174,6 @@
 				table.receiveShadow = true;
 				scene.add( table );
 
-				/*
-				var table = new THREE.Mesh( geometry, material );
-				table.position.y = 0.35;
-				table.position.z = -0.85;
-				table.castShadow = true;
-				table.receiveShadow = true;
-				scene.add( table );
-				*/
 
 				var geometry = new THREE.PlaneBufferGeometry( 4, 4 );
 				var material = new THREE.MeshStandardMaterial( {
@@ -240,70 +197,10 @@
 
 					    //BEGIN ALGORITHM
 					    var pcBuffer = generatePointcloud( materialArray );
-						pcBuffer.scale.set( 2,2,2 );
+						pcBuffer.scale.set( 1,1,1 );
 						pcBuffer.position.set( -2,0,2 );
 						scene.add( pcBuffer );
 
-
-						/*
-					    for (var z=0; z < 50; z++)
-					    {
-					        var item_z = materialArray[z];
-					        
-					        y=0;
-					        
-					        for (var y = 0; y < 50; y++)
-					        {
-					        	var item_y = item_z[y];
-
-					            x=0;
-					            
-					            for (var x = 0; x < 50; x++)
-					            {
-					            	var item_x = item_y[x];
-
-					                // create and add a 3d sphere
-
-					                var xValue = parseFloat(item_x);
-					                //console.log(xValue);
-
-					                var greyColor = 1.0;
-					                var alpha = 0.5;
-
-					                if (xValue > 1.0)
-					                {
-					                	//Broken Value
-					                	alpha = 0.0;
-					                	xValue = 1.0;
-					                }
-					                else if ( xValue < 0.0)
-					                {
-					                	//Broken Value
-					                	alpha = 0.0;
-					                	xValue = 0.0;   
-					                }
-					                else
-					                {
-					                	alpha = 0.5-xValue/2.0;
-					                	greyColor = xValue;
-					                }
-					                
-					                
-									var geometry = new THREE.SphereGeometry( 0.02, 3, 2 );
-									var color = new THREE.Color( greyColor, greyColor, greyColor );
-									var material = new THREE.MeshBasicMaterial( {color: color, opacity: alpha} );
-									var sphere = new THREE.Mesh( geometry, material );
-									sphere.position.x = 0.0 + x*0.02;
-									sphere.position.y = 0.2 + y*0.02;
-									sphere.position.z = -0.25 + z*0.02;
-									//sphere.alpha = alpha;
-									scene.add( sphere );
-
-					            }
-					        }
-					    }
-					    //END ALGORITHM
-					     */
 					  }
 					}
 				);
