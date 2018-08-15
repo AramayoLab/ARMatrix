@@ -67,7 +67,7 @@
 
 			function generatePointCloudGeometry( materialArray ){
 				var geometry = new THREE.BufferGeometry();
-				var numPoints = width*length;
+				var numPoints = materialArray.length * materialArray[0].length * materialArray[0][0].length;
 				var positions = new Float32Array( numPoints*3 );
 				var colors = new Float32Array( numPoints*3 );
 				
